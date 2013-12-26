@@ -7,7 +7,7 @@
   delaycompress
 
   lastaction
-    pid=<%= unicorn_pid %>
+    pid=<%= fetch(:unicorn_pid) %>
     test -s $pid && kill -USR1 "$(cat $pid)"
   endscript
 
