@@ -112,8 +112,8 @@ set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 set :unicorn_config, "#{shared_path}/config/unicorn.rb"
 
 # path, where unicorn log file will be stored
-# default value: `"#{shared_path}/config/unicorn.rb"`
-set :unicorn_log, "#{shared_path}/config/unicorn.rb"
+# default value: `"#{shared_path}/log/unicorn.log"`
+set :unicorn_log, "#{shared_path}/log/unicorn.log"
 
 # user name to run unicorn
 # default value: `user` (user varibale defined in your `deploy.rb`)
