@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Ivan Tkalin", "Oleg Bavaev"]
   gem.email         = ["itkalin@gmail.com", "jesoba7@gmail.com"]
   gem.description   = %q{Capistrano v3 tasks for configuration and management nginx+unicorn combo for zero downtime deployments of Rails applications. Configs can be copied to the application using generators and easily customized.}
-  gem.summary       = %q{Create and manage nginx+unicorn configs from capistrano 3}
+  gem.summary       = %q{Create and manage nginx+unicorn configs from capistrano v3}
   gem.homepage      = "https://github.com/jesson/capistrano3-nginx_unicorn"
 
   gem.files         = `git ls-files`.split($/)
