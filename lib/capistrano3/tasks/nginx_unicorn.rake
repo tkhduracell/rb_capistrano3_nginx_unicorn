@@ -101,7 +101,7 @@ def template(template_name, target)
   config_file = "#{fetch(:templates_path)}/#{template_name}"
   # if no customized file, proceed with default
   unless File.exists?(config_file)
-    config_file = File.join(File.dirname(__FILE__), "../../../generators/capistrano3/nginx_unicorn/templates/#{template_name}")
+    config_file = File.join(File.dirname(__FILE__), "../../generators/capistrano3/nginx_unicorn/templates/#{template_name}")
   end
   upload! StringIO.new(ERB.new(File.read(config_file)).result(binding)), target
 end
