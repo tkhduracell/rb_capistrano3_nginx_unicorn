@@ -1,4 +1,4 @@
-module Capistrano
+module Capistrano3
   module NginxUnicorn
     module Generators
       class ConfigGenerator < Rails::Generators::Base

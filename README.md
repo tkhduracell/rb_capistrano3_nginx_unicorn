@@ -1,4 +1,6 @@
-# Capistrano-Nginx-Unicorn
+# Capistrano3-NginxUnicorn
+
+This is a capistrano v3 plugin that integrates Unicorn tasks and Nginx configuration into capistrano deployment scripts; it was forked from kalys/capistrano-nginx-unicorn
 
 Capistrano tasks for configuration and management nginx+unicorn combo for zero downtime deployments of Rails applications.
 
@@ -17,7 +19,7 @@ Also, for full customization, all configs can be copied to the application using
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano-nginx-unicorn', require: false, group: :development
+    gem 'capistrano3-nginx_unicorn', group: :development
 
 And then execute:
 
@@ -25,13 +27,13 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install capistrano-nginx-unicorn
+    $ gem install capistrano3-nginx_unicorn
 
 ## Usage
 
-Add this line to your `deploy.rb`
+Add this line to your `Capfile`
 
-    require 'capistrano-nginx-unicorn'
+    require 'capistrano/nginx_unicorn'
 
 Note, that following capistrano variables should be defined:
 
