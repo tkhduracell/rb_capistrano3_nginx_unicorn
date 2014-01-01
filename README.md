@@ -158,7 +158,6 @@ your `deploy.rb` will look like this:
 ```ruby
 set :server_name, "example.com"
 set :unicorn_workers, 4
-require 'capistrano-nginx-unicorn'
 ```
 
 ### Template Customization
