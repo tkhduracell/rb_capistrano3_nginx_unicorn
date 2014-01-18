@@ -33,7 +33,7 @@ Or install it yourself as:
 
 Add this line to your `Capfile`
 
-    require 'capistrano/nginx_unicorn'
+    require 'capistrano3/nginx_unicorn'
 
 Note, that following capistrano variables should be defined:
 
