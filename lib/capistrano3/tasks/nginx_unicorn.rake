@@ -2,10 +2,10 @@ require 'capistrano'
 
 namespace :load do
   task :defaults do
-    set :templates_path, "config/deploy/templates" 
+    set :templates_path, "config/deploy/templates"
 
     set :nginx_server_name, -> { "www.example.com" }
-    set :nginx_use_ssl, false 
+    set :nginx_use_ssl, false
     set :nginx_ssl_certificate, -> { "#{fetch(:nginx_server_name)}.crt" }
     set :nginx_ssl_certificate_key, -> { "#{fetch(:nginx_server_name)}.key" }
     set :nginx_upload_local_certificate, -> { true }
@@ -88,7 +88,7 @@ end
 
 desc "Setup logs rotation for nginx and unicorn"
 task :logrotate do
-  on roles([:web, :app]) do
+  on roles(:web, :app) do
     template("logrotate.erb", "/tmp/#{fetch(:application)}_logrotate")
     execute "sudo mv /tmp/#{fetch(:application)}_logrotate /etc/logrotate.d/#{fetch(:application)}"
     execute "sudo chown root:root /etc/logrotate.d/#{fetch(:application)}"
