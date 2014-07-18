@@ -37,8 +37,8 @@ namespace :nginx do
           execute "mv /tmp/#{fetch(:nginx_ssl_certificate_key)} /etc/ssl/private/#{fetch(:nginx_ssl_certificate_key)}"
         end
 
-        execute "chown root:root /etc/ssl/certs/#{fetch(:nginx_ssl_certificate)}"
-        execute "chown root:root /etc/ssl/private/#{fetch(:nginx_ssl_certificate_key)}"
+        execute "chown #{fetch(:user)}:#{fetch(:user)} /etc/ssl/certs/#{fetch(:nginx_ssl_certificate)}"
+        execute "chown #{fetch(:user)}:#{fetch(:user)} /etc/ssl/private/#{fetch(:nginx_ssl_certificate_key)}"
       end
     end
   end
@@ -65,8 +65,8 @@ namespace :unicorn do
       template "unicorn.rb.erb", fetch(:unicorn_config)
       template "unicorn_init.erb", "/tmp/unicorn_init"
       execute "chmod +x /tmp/unicorn_init"
-      execute "mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}"
-      execute "update-rc.d -f unicorn_#{fetch(:application)} defaults"
+      execute "mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}_#{fetch(:stage)}"
+      execute "update-rc.d -f unicorn_#{fetch(:application)}_#{fetch(:stage)} defaults"
     end
   end
 
@@ -79,7 +79,7 @@ namespace :deploy do
     desc "#{command} unicorn"
     task command do
       on roles(:app) do
-        execute "service unicorn_#{fetch(:application)} #{command}"
+        execute "service unicorn_#{fetch(:application)}_#{fetch(:stage)} #{command}"
       end
     end
   end
@@ -91,7 +91,7 @@ task :logrotate do
   on roles(:web, :app) do
     template("logrotate.erb", "/tmp/#{fetch(:application)}_logrotate")
     execute "mv /tmp/#{fetch(:application)}_logrotate /etc/logrotate.d/#{fetch(:application)}"
-    execute "chown root:root /etc/logrotate.d/#{fetch(:application)}"
+    execute "chown #{fetch(:user)}:#{fetch(:user)} /etc/logrotate.d/#{fetch(:application)}"
   end
 end
 
