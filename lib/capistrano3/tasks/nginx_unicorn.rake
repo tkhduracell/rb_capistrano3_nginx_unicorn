@@ -65,8 +65,8 @@ namespace :unicorn do
       template "unicorn.rb.erb", fetch(:unicorn_config)
       template "unicorn_init.erb", "/tmp/unicorn_init"
       execute "chmod +x /tmp/unicorn_init"
-      execute "mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}_#{fetch(:stage)}"
-      execute "update-rc.d -f unicorn_#{fetch(:application)}_#{fetch(:stage)} defaults"
+      execute "mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}"
+      execute "update-rc.d -f unicorn_#{fetch(:application)} defaults"
     end
   end
 
@@ -79,7 +79,7 @@ namespace :deploy do
     desc "#{command} unicorn"
     task command do
       on roles(:app) do
-        execute "service unicorn_#{fetch(:application)}_#{fetch(:stage)} #{command}"
+        execute "service unicorn_#{fetch(:application)} #{command}"
       end
     end
   end
