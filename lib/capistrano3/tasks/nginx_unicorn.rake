@@ -66,7 +66,7 @@ namespace :unicorn do
       template "unicorn_init.erb", "/tmp/unicorn_init"
       execute "chmod +x /tmp/unicorn_init"
       execute "mv /tmp/unicorn_init /etc/init.d/unicorn_#{fetch(:application)}"
-      execute "update-rc.d -f unicorn_#{fetch(:application)} defaults"
+#      execute "update-rc.d -f unicorn_#{fetch(:application)} defaults"
     end
   end
 
@@ -94,8 +94,6 @@ task :logrotate do
     execute "chown #{fetch(:user)}:#{fetch(:user)} /etc/logrotate.d/#{fetch(:application)}"
   end
 end
-
-after "deploy:check", "logrotate"
 
 def template(template_name, target)
   config_file = "#{fetch(:templates_path)}/#{template_name}"
